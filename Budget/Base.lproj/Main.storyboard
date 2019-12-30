@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pMt-XF-UuT">
-    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,27 +12,55 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Budget" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KxW-8R-9Ln">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="KxW-8R-9Ln" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Hta-Xf-9pZ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="KxW-8R-9Ln" secondAttribute="bottom" id="NpO-Fw-krL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KxW-8R-9Ln" secondAttribute="trailing" id="SZG-RO-m85"/>
+                            <constraint firstItem="KxW-8R-9Ln" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="r2Z-jQ-d48"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="3Sq-rW-rEp">
-                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="Q75-7e-IjF"/>
+                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="Q75-7e-IjF">
+                            <connections>
+                                <action selector="onHomeButtonPressed:" destination="BYZ-38-t0r" id="0do-0w-U2B"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1989.5999999999999" y="89.408866995073893"/>
+            <point key="canvasLocation" x="1988.4057971014495" y="89.0625"/>
         </scene>
         <!--Transactions-->
         <scene sceneID="XEW-eJ-for">
             <objects>
                 <viewController id="GO3-Sy-xq8" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ns8-7F-TJs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="g6I-Pv-I8g">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="g6I-Pv-I8g" firstAttribute="top" secondItem="S5V-L4-GES" secondAttribute="top" id="CHY-ah-ILT"/>
+                            <constraint firstItem="g6I-Pv-I8g" firstAttribute="leading" secondItem="S5V-L4-GES" secondAttribute="leading" id="KCG-Vt-GYu"/>
+                            <constraint firstItem="g6I-Pv-I8g" firstAttribute="bottom" secondItem="S5V-L4-GES" secondAttribute="bottom" id="YVn-xS-SEe"/>
+                            <constraint firstItem="g6I-Pv-I8g" firstAttribute="trailing" secondItem="S5V-L4-GES" secondAttribute="trailing" id="vmU-5O-DiN"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="S5V-L4-GES"/>
                     </view>
                     <navigationItem key="navigationItem" title="Transactions" id="37M-Jy-r02">
@@ -48,9 +76,21 @@
             <objects>
                 <viewController id="ss3-lm-0tb" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7VQ-l9-Ebl">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3A5-TT-fbP">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="3A5-TT-fbP" firstAttribute="bottom" secondItem="LRC-b4-Fkr" secondAttribute="bottom" id="8vk-Lw-27o"/>
+                            <constraint firstItem="3A5-TT-fbP" firstAttribute="top" secondItem="LRC-b4-Fkr" secondAttribute="top" id="E82-Wl-ucZ"/>
+                            <constraint firstItem="3A5-TT-fbP" firstAttribute="trailing" secondItem="LRC-b4-Fkr" secondAttribute="trailing" id="MNY-Fc-dz6"/>
+                            <constraint firstItem="3A5-TT-fbP" firstAttribute="leading" secondItem="LRC-b4-Fkr" secondAttribute="leading" id="YOv-9y-JEZ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="LRC-b4-Fkr"/>
                     </view>
                     <navigationItem key="navigationItem" title="Accounts" id="iiH-M0-ipa">
@@ -59,7 +99,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KVq-fg-Dm1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2940" y="781.77339901477831"/>
+            <point key="canvasLocation" x="2939.130434782609" y="781.47321428571422"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="jMR-sd-imD">
@@ -90,7 +130,7 @@
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="4nr-Xr-icm"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="n7z-bM-Bgu">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -109,7 +149,7 @@
                     <tabBarItem key="tabBarItem" title="Transactions" image="dollarsign.circle" catalog="system" id="42p-yx-AiX"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="O76-yY-SP2">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -128,7 +168,7 @@
                     <tabBarItem key="tabBarItem" title="Accounts" image="person" catalog="system" id="wMY-YM-a7V"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="loN-F3-N2f">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
