@@ -7,7 +7,8 @@ target 'Budget' do
 
   # Pods for Budget
   pod 'Firebase/Analytics'
-
+  pod 'RealmSwift'
+  
   target 'BudgetTests' do
     inherit! :search_paths
     # Pods for testing

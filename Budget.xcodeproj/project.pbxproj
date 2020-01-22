@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5CCA609D7493870FD6DD5010 /* Pods_Budget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF1184B514FE68B513C7791C /* Pods_Budget.framework */; };
 		887C448423CFB77B001818FF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 887C448323CFB77B001818FF /* GoogleService-Info.plist */; };
+		889E1D7123D7A2C600D5F8BB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889E1D7023D7A2C600D5F8BB /* Category.swift */; };
 		88E2A34B23B7AAE0003B5456 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E2A34A23B7AAE0003B5456 /* AppDelegate.swift */; };
 		88E2A34D23B7AAE0003B5456 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E2A34C23B7AAE0003B5456 /* SceneDelegate.swift */; };
 		88E2A34F23B7AAE0003B5456 /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E2A34E23B7AAE0003B5456 /* CategoryListViewController.swift */; };
@@ -43,6 +44,7 @@
 		3FEE554DFE9BF89F863C7DBB /* Pods-Budget-BudgetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budget-BudgetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Budget-BudgetUITests/Pods-Budget-BudgetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6ABDDD7718F0447FDCC934B6 /* Pods-Budget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Budget.release.xcconfig"; path = "Target Support Files/Pods-Budget/Pods-Budget.release.xcconfig"; sourceTree = "<group>"; };
 		887C448323CFB77B001818FF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		889E1D7023D7A2C600D5F8BB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		88E2A34723B7AAE0003B5456 /* Budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88E2A34A23B7AAE0003B5456 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88E2A34C23B7AAE0003B5456 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +118,38 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		889E1D7223D7A2D200D5F8BB /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				889E1D7023D7A2C600D5F8BB /* Category.swift */,
+			);
+			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		889E1D7323D7A2E500D5F8BB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				88E2A34E23B7AAE0003B5456 /* CategoryListViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		889E1D7423D7A30E00D5F8BB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		889E1D7523D7A33A00D5F8BB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				88E2A35323B7AAE4003B5456 /* Assets.xcassets */,
+				88E2A35523B7AAE4003B5456 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		88E2A33E23B7AAE0003B5456 = {
 			isa = PBXGroup;
 			children = (
@@ -141,13 +175,14 @@
 		88E2A34923B7AAE0003B5456 /* Budget */ = {
 			isa = PBXGroup;
 			children = (
+				889E1D7423D7A30E00D5F8BB /* Views */,
 				887C448323CFB77B001818FF /* GoogleService-Info.plist */,
 				88E2A34A23B7AAE0003B5456 /* AppDelegate.swift */,
 				88E2A34C23B7AAE0003B5456 /* SceneDelegate.swift */,
-				88E2A34E23B7AAE0003B5456 /* CategoryListViewController.swift */,
+				889E1D7323D7A2E500D5F8BB /* Controllers */,
+				889E1D7223D7A2D200D5F8BB /* Data Model */,
 				88E2A35023B7AAE0003B5456 /* Main.storyboard */,
-				88E2A35323B7AAE4003B5456 /* Assets.xcassets */,
-				88E2A35523B7AAE4003B5456 /* LaunchScreen.storyboard */,
+				889E1D7523D7A33A00D5F8BB /* Supporting Files */,
 				88E2A35823B7AAE4003B5456 /* Info.plist */,
 			);
 			path = Budget;
@@ -414,6 +449,7 @@
 				88E2A34F23B7AAE0003B5456 /* CategoryListViewController.swift in Sources */,
 				88E2A34B23B7AAE0003B5456 /* AppDelegate.swift in Sources */,
 				88E2A34D23B7AAE0003B5456 /* SceneDelegate.swift in Sources */,
+				889E1D7123D7A2C600D5F8BB /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
