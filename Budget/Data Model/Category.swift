@@ -11,5 +11,5 @@ import RealmSwift
 
 class Category: Object {
     @objc dynamic var title : String = ""
-    @objc dynamic var amount: Int = 0
+    @objc dynamic var amount: Float = 0.00
 }
