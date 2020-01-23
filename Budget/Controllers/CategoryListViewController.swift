@@ -9,6 +9,15 @@
 import UIKit
 import RealmSwift
 
+extension UIStackView {
+    func addBackground(color: UIColor) {
+        let subView = UIView(frame: bounds)
+        subView.backgroundColor = color
+        subView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        insertSubview(subView, at: 0)
+    }
+}
+
 class CategoryListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let realm = try! Realm()
@@ -17,12 +26,14 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var toBeBudgeted: UILabel!
+    @IBOutlet weak var stackView: UIStackView!
     
     override func viewDidLoad() { // load up and read data
         super.viewDidLoad()
         categoryNames = realm.objects(Category.self)
         myTableView.reloadData()
         toBeBudgeted.text = "$" + String(defaults.float(forKey: "ToBeBudgeted"))
+        stackView.addBackground(color: #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1))
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int // set correct number of rows
@@ -53,7 +64,26 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
             self.delete(row: indexPath.row)
         }))
         alert.addAction(UIAlertAction(title: "Transfer", style: .default, handler: {(action) in
+            let alert = UIAlertController(title: "Transfer Money", message: "This will go from To Be Budgeted for now", preferredStyle: UIAlertController.Style.alert)
             
+            alert.addTextField(configurationHandler: nil)
+            alert.textFields![0].placeholder = "How much to transfer..."
+            alert.textFields![0].keyboardType = .decimalPad
+                        
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
+            
+            alert.addAction(UIAlertAction(title: "Transfer", style: UIAlertAction.Style.default, handler: {(action) in
+                if(alert.textFields![0].hasText) {
+                    let newCategory = Category()
+                    newCategory.title = self.categoryNames![indexPath.row].title
+                    newCategory.amount = self.categoryNames![indexPath.row].amount + (alert.textFields![0].text! as NSString).floatValue
+                    self.defaults.set(self.defaults.float(forKey: "ToBeBudgeted") - newCategory.amount, forKey: "ToBeBudgeted")
+                    self.toBeBudgeted.text = "$" + String(self.defaults.float(forKey: "ToBeBudgeted"))
+                    self.update(category: newCategory, i: indexPath.row)
+                }
+            }))
+            
+            self.present(alert, animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: "Edit", style: .default, handler: {(action) in
             let alert = UIAlertController(title: "Edit Category", message: nil, preferredStyle: UIAlertController.Style.alert)
@@ -69,15 +99,14 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
                 if(alert.textFields![0].hasText) {
                     let newCategory = Category()
                     newCategory.title = alert.textFields![0].text!
+                    newCategory.amount = self.categoryNames![indexPath.row].amount
                     self.update(category: newCategory, i: indexPath.row)
                 }
             }))
             
             self.present(alert, animated: true, completion: nil)
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {(action) in
-            
-        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
         
@@ -130,6 +159,7 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
         do {
             try realm.write {
                 categoryNames![i].title = category.title
+                categoryNames![i].amount = category.amount
             }
         } catch {
             print("Error updating category \(error)")
