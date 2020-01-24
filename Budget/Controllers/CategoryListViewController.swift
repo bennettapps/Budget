@@ -133,12 +133,23 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
         self.present(alert, animated: true, completion: nil)
     }
     
-    func delete(row: Int) { // delete row
-        try? self.realm.write ({
-            realm.delete((categoryNames?[row])!)
-            categoryNames = realm.objects(Category.self)
-        })
-        myTableView.reloadData()
+    func delete(row: Int) { // delete row, and move the balance up to "to be budgeted"
+        let alert = UIAlertController(title: "Delete?", message: "Category will be Deleted and the Balance will be Transferred back to 'To Be Budgeted'", preferredStyle: UIAlertController.Style.alert)
+                
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: {(action) in
+            try? self.realm.write ({
+                let deletingBalance = self.categoryNames?[row].amount
+                self.defaults.set(self.defaults.float(forKey: "ToBeBudgeted") + deletingBalance!, forKey: "ToBeBudgeted")
+                self.toBeBudgeted.text = "$" + String(self.defaults.float(forKey: "ToBeBudgeted"))
+                self.realm.delete((self.categoryNames?[row])!)
+                self.categoryNames = self.realm.objects(Category.self)
+            })
+            self.myTableView.reloadData()
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     func save(category: Category) { // save row
