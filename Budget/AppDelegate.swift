@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import RealmSwift
+import RSSelectionMenu
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -69,10 +69,12 @@ PODS:
   - Realm/Headers (4.3.1)
   - RealmSwift (4.3.1):
     - Realm (= 4.3.1)
+  - RSSelectionMenu (6.1.0)
 
 DEPENDENCIES:
   - Firebase/Analytics
   - RealmSwift
+  - RSSelectionMenu
 
 SPEC REPOS:
   trunk:
@@ -89,6 +91,7 @@ SPEC REPOS:
     - nanopb
     - Realm
     - RealmSwift
+    - RSSelectionMenu
 
 SPEC CHECKSUMS:
   Firebase: 0219bb4782eb1406f1b9b0628a2e625484ce910d
@@ -104,7 +107,8 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Realm: 31dc40934081ef740f60feedc46d88473cbfeb40
   RealmSwift: b5199e9a41f67b99f51acf6874a6166f5fbe93d1
+  RSSelectionMenu: dac4fa365e4bbd95c0eccd0b6ff51a623a22a1c6
 
-PODFILE CHECKSUM: 25958fafd7966a7c666ff3ff84532bfc63cfa54d
+PODFILE CHECKSUM: 4ce3fb71ed789f157bea597c0f0a16a6bc0ae753
 
 COCOAPODS: 1.8.4

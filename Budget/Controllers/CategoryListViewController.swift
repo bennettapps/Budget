@@ -5,7 +5,6 @@
 //  Created by Jesse on 12/28/19.
 //  Copyright © 2019 Bennett Apps. All rights reserved.
 //
-
 import UIKit
 import RealmSwift
 
@@ -32,7 +31,7 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         categoryNames = realm.objects(Category.self)
         myTableView.reloadData()
-        toBeBudgeted.text = "$" + String(defaults.float(forKey: "ToBeBudgeted"))
+        toBeBudgeted.text = String(format: "$%.2f", defaults.float(forKey: "ToBeBudgeted"))
         stackView.addBackground(color: #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1))
     }
     
@@ -44,7 +43,7 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell // set all the titles
     {
         let cell = myTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CategoryTableViewCell
-        cell.valueText.text = "$" + String(categoryNames![indexPath.row].amount)
+        cell.valueText.text = String(format: "$%.2f", categoryNames![indexPath.row].amount)
         cell.textLabel?.text = categoryNames?[indexPath.row].title
         return(cell)
     }
@@ -69,7 +68,7 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
             alert.addTextField(configurationHandler: nil)
             alert.textFields![0].placeholder = "How much to transfer..."
             alert.textFields![0].keyboardType = .decimalPad
-                        
+            
             alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
             
             alert.addAction(UIAlertAction(title: "Transfer", style: UIAlertAction.Style.default, handler: {(action) in
@@ -78,7 +77,7 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
                     newCategory.title = self.categoryNames![indexPath.row].title
                     newCategory.amount = self.categoryNames![indexPath.row].amount + (alert.textFields![0].text! as NSString).floatValue
                     self.defaults.set(self.defaults.float(forKey: "ToBeBudgeted") - newCategory.amount, forKey: "ToBeBudgeted")
-                    self.toBeBudgeted.text = "$" + String(self.defaults.float(forKey: "ToBeBudgeted"))
+                    self.toBeBudgeted.text = String(format: "$%.2f", self.defaults.float(forKey: "ToBeBudgeted"))
                     self.update(category: newCategory, i: indexPath.row)
                 }
             }))
@@ -135,14 +134,14 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
     
     func delete(row: Int) { // delete row, and move the balance up to "to be budgeted"
         let alert = UIAlertController(title: "Delete?", message: "Category will be Deleted and the Balance will be Transferred back to 'To Be Budgeted'", preferredStyle: UIAlertController.Style.alert)
-                
+        
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
         
         alert.addAction(UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: {(action) in
             try? self.realm.write ({
                 let deletingBalance = self.categoryNames?[row].amount
                 self.defaults.set(self.defaults.float(forKey: "ToBeBudgeted") + deletingBalance!, forKey: "ToBeBudgeted")
-                self.toBeBudgeted.text = "$" + String(self.defaults.float(forKey: "ToBeBudgeted"))
+                self.toBeBudgeted.text = String(format: "$%.2f", self.defaults.float(forKey: "ToBeBudgeted"))
                 self.realm.delete((self.categoryNames?[row])!)
                 self.categoryNames = self.realm.objects(Category.self)
             })
