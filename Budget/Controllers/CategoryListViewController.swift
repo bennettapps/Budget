@@ -63,6 +63,13 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
             self.delete(row: indexPath.row)
         }))
         alert.addAction(UIAlertAction(title: "Transfer", style: .default, handler: {(action) in
+            //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            //            let myModalViewController = storyboard.instantiateViewController(withIdentifier: "TransferPopup")
+            //            myModalViewController.modalPresentationStyle = UIModalPresentationStyle.automatic
+            //            myModalViewController.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+            //            self.present(myModalViewController, animated: true, completion: nil)
+            
+            
             let alert = UIAlertController(title: "Transfer Money", message: "This will go from To Be Budgeted for now", preferredStyle: UIAlertController.Style.alert)
             
             alert.addTextField(configurationHandler: nil)

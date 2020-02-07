@@ -95,13 +95,6 @@
 			<key>orderHint</key>
 			<integer>13</integer>
 		</dict>
-		<key>RSSelectionMenu.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>16</integer>
-		</dict>
 		<key>Realm.xcscheme</key>
 		<dict>
 			<key>isShown</key>
