@@ -11,6 +11,7 @@
 		88309A3023ED08C60090ABA6 /* Accounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88309A2F23ED08C60090ABA6 /* Accounts.swift */; };
 		88309A3223ED08D90090ABA6 /* Transactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88309A3123ED08D90090ABA6 /* Transactions.swift */; };
 		88309A3623ED09F50090ABA6 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88309A3523ED09F50090ABA6 /* AccountTableViewController.swift */; };
+		886C56DC23EE04E60099268E /* TransactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886C56DB23EE04E60099268E /* TransactionTableViewController.swift */; };
 		887C448423CFB77B001818FF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 887C448323CFB77B001818FF /* GoogleService-Info.plist */; };
 		88987BE623D91918006ACB18 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88987BE523D91918006ACB18 /* CategoryTableViewCell.swift */; };
 		889E1D7123D7A2C600D5F8BB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889E1D7023D7A2C600D5F8BB /* Category.swift */; };
@@ -50,6 +51,7 @@
 		88309A2F23ED08C60090ABA6 /* Accounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accounts.swift; sourceTree = "<group>"; };
 		88309A3123ED08D90090ABA6 /* Transactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transactions.swift; sourceTree = "<group>"; };
 		88309A3523ED09F50090ABA6 /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
+		886C56DB23EE04E60099268E /* TransactionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewController.swift; sourceTree = "<group>"; };
 		887C448323CFB77B001818FF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		88987BE523D91918006ACB18 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		889E1D7023D7A2C600D5F8BB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			children = (
 				88E2A34E23B7AAE0003B5456 /* CategoryListViewController.swift */,
 				88309A3523ED09F50090ABA6 /* AccountTableViewController.swift */,
+				886C56DB23EE04E60099268E /* TransactionTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				889E1D7123D7A2C600D5F8BB /* Category.swift in Sources */,
 				88309A3623ED09F50090ABA6 /* AccountTableViewController.swift in Sources */,
 				88309A3023ED08C60090ABA6 /* Accounts.swift in Sources */,
+				886C56DC23EE04E60099268E /* TransactionTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

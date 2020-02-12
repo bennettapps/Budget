@@ -8,30 +8,29 @@
 import UIKit
 import RealmSwift
 
-class AccountTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TransactionTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let realm = try! Realm()
-    let defaults = UserDefaults.standard
-    var accountList: Results<Accounts>?
+    var transactionList: Results<Transactions>?
     
     @IBOutlet weak var myTableView: UITableView!
     
     override func viewDidLoad() { // load up and read data
         super.viewDidLoad()
-        accountList = realm.objects(Accounts.self)
+        transactionList = realm.objects(Transactions.self)
         myTableView.reloadData()
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int // set correct number of rows
     {
-        return accountList?.count ?? 0
+        return transactionList?.count ?? 0
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell // set all the titles
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "accountCell", for: indexPath) as! CategoryTableViewCell
-        cell.valueText.text = String(format: "$%.2f", accountList![indexPath.row].balance)
-        cell.textLabel?.text = accountList?[indexPath.row].title
+        let cell = tableView.dequeueReusableCell(withIdentifier: "transactionCell", for: indexPath) as! CategoryTableViewCell
+        cell.valueText.text = String(format: "$%.2f", transactionList![indexPath.row].amount)
+        cell.textLabel?.text = transactionList?[indexPath.row].title
         return(cell)
     }
     
@@ -51,21 +50,21 @@ class AccountTableViewController: UIViewController, UITableViewDelegate, UITable
         }))
         
         alert.addAction(UIAlertAction(title: "Edit", style: .default, handler: {(action) in
-            let alert = UIAlertController(title: "Edit Account", message: nil, preferredStyle: UIAlertController.Style.alert)
+            let alert = UIAlertController(title: "Edit Transaction", message: nil, preferredStyle: UIAlertController.Style.alert)
             
             alert.addTextField(configurationHandler: nil)
             alert.textFields![0].placeholder = "Enter a name..."
-            alert.textFields![0].text = self.accountList![indexPath.row].title
+            alert.textFields![0].text = self.transactionList![indexPath.row].title
             alert.textFields![0].autocorrectionType = .yes
             
             alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
             
             alert.addAction(UIAlertAction(title: "Save", style: UIAlertAction.Style.default, handler: {(action) in
                 if(alert.textFields![0].hasText) {
-                    let newAccount = Accounts()
-                    newAccount.title = alert.textFields![0].text!
-                    newAccount.balance = self.accountList![indexPath.row].balance
-                    self.update(account: newAccount, i: indexPath.row)
+                    let newTransaction = Transactions()
+                    newTransaction.title = alert.textFields![0].text!
+                    newTransaction.amount = self.transactionList![indexPath.row].amount
+                    self.update(transaction: newTransaction, i: indexPath.row)
                 }
             }))
             
@@ -79,7 +78,7 @@ class AccountTableViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @IBAction func plusButtonClicked(_ sender: Any) {
-        let alert = UIAlertController(title: "New Account", message: nil, preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "New Transaction", message: nil, preferredStyle: UIAlertController.Style.alert)
         
         alert.addTextField(configurationHandler: nil)
         alert.textFields![0].placeholder = "Enter a name..."
@@ -93,10 +92,10 @@ class AccountTableViewController: UIViewController, UITableViewDelegate, UITable
         
         alert.addAction(UIAlertAction(title: "Create", style: UIAlertAction.Style.default, handler: {(action) in
             if(alert.textFields![0].hasText) {
-                let newAccount = Accounts()
-                newAccount.title = alert.textFields![0].text!
-                newAccount.balance = (alert.textFields![1].text! as NSString).floatValue
-                self.save(account: newAccount)
+                let newTransaction = Transactions()
+                newTransaction.title = alert.textFields![0].text!
+                newTransaction.amount = (alert.textFields![1].text! as NSString).floatValue
+                self.save(transaction: newTransaction)
             }
         }))
         
@@ -104,14 +103,14 @@ class AccountTableViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func delete(row: Int) { // delete row, and move the balance up to "to be budgeted"
-        let alert = UIAlertController(title: "Delete?", message: "Account will be Deleted and the Balance will be gone forever", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "Delete?", message: "Transaction will be Deleted and the Balance will be gone forever", preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
         
         alert.addAction(UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: {(action) in
             try? self.realm.write ({
-                self.realm.delete((self.accountList?[row])!)
-                self.accountList = self.realm.objects(Accounts.self)
+                self.realm.delete((self.transactionList?[row])!)
+                self.transactionList = self.realm.objects(Transactions.self)
             })
             self.myTableView.reloadData()
         }))
@@ -119,30 +118,29 @@ class AccountTableViewController: UIViewController, UITableViewDelegate, UITable
         self.present(alert, animated: true, completion: nil)
     }
     
-    func save(account: Accounts) { // save row
+    func save(transaction: Transactions) { // save row
         do {
             try realm.write {
-                let newAccount = Accounts()
-                newAccount.title = account.title
-                newAccount.balance = account.balance
-                realm.add(newAccount)
-                defaults.set(defaults.float(forKey: "ToBeBudgeted") + account.balance, forKey: "ToBeBudgeted")
+                let newTransaction = Transactions()
+                newTransaction.title = transaction.title
+                newTransaction.amount = transaction.amount
+                realm.add(newTransaction)
             }
         } catch {
-            print("Error saving account \(error)")
+            print("Error saving transaction \(error)")
         }
         
         self.myTableView.reloadData()
     }
     
-    func update(account: Accounts, i: Int) { // update row
+    func update(transaction: Transactions, i: Int) { // update row
         do {
             try realm.write {
-                accountList![i].title = account.title
-                accountList![i].balance = account.balance
+                transactionList![i].title = transaction.title
+                transactionList![i].amount = transaction.amount
             }
         } catch {
-            print("Error updating account \(error)")
+            print("Error updating transaction \(error)")
         }
         
         self.myTableView.reloadData()
