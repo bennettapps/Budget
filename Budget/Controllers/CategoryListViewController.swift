@@ -86,7 +86,7 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
                     let newCategory = Category()
                     newCategory.title = self.categoryNames![indexPath.row].title
                     newCategory.amount = self.categoryNames![indexPath.row].amount + (alert.textFields![0].text! as NSString).floatValue
-                    self.defaults.set(self.defaults.float(forKey: "ToBeBudgeted") - newCategory.amount, forKey: "ToBeBudgeted")
+                    self.defaults.set(self.defaults.float(forKey: "ToBeBudgeted") - (alert.textFields![0].text! as NSString).floatValue, forKey: "ToBeBudgeted")
                     self.toBeBudgeted.text = String(format: "$%.2f", self.defaults.float(forKey: "ToBeBudgeted"))
                     self.update(category: newCategory, i: indexPath.row)
                 }

@@ -18,6 +18,9 @@ class AccountTableViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() { // load up and read data
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         accountList = realm.objects(Accounts.self)
         myTableView.reloadData()
     }

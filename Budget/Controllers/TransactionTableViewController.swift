@@ -60,13 +60,18 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
             alert.textFields![0].text = self.transactionList![indexPath.row].title
             alert.textFields![0].autocorrectionType = .yes
             
+            alert.addTextField(configurationHandler: nil)
+            alert.textFields![1].placeholder = "Enter amount..."
+            alert.textFields![1].keyboardType = .decimalPad
+            alert.textFields![1].text = String(self.transactionList![indexPath.row].amount)
+
             alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
             
             alert.addAction(UIAlertAction(title: "Save", style: UIAlertAction.Style.default, handler: {(action) in
                 if(alert.textFields![0].hasText) {
                     let newTransaction = Transactions()
                     newTransaction.title = alert.textFields![0].text!
-                    newTransaction.amount = self.transactionList![indexPath.row].amount
+                    newTransaction.amount = (alert.textFields![1].text! as NSString).floatValue
                     self.update(transaction: newTransaction, i: indexPath.row)
                 }
             }))
@@ -88,7 +93,7 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
         alert.textFields![0].autocorrectionType = .yes
         
         alert.addTextField(configurationHandler: nil)
-        alert.textFields![1].placeholder = "Enter starting balance..."
+        alert.textFields![1].placeholder = "Enter amount..."
         alert.textFields![1].keyboardType = .decimalPad
         
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
@@ -150,6 +155,18 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
     
     func update(transaction: Transactions, i: Int) { // update row
         do {
+            try realm.write {
+                let categories = realm.objects(Category.self)
+                categories[transactionList![i].category].amount -= transactionList![i].amount
+                categories[transaction.category].amount += transaction.amount
+            }
+            
+            try realm.write {
+                let accounts = realm.objects(Accounts.self)
+                accounts[transactionList![i].account].balance -= transactionList![i].amount
+                accounts[transaction.account].balance += transaction.amount
+            }
+            
             try realm.write {
                 transactionList![i].title = transaction.title
                 transactionList![i].amount = transaction.amount
