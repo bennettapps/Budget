@@ -13,6 +13,7 @@
 		88309A3623ED09F50090ABA6 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88309A3523ED09F50090ABA6 /* AccountTableViewController.swift */; };
 		886C56DC23EE04E60099268E /* TransactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886C56DB23EE04E60099268E /* TransactionTableViewController.swift */; };
 		887C448423CFB77B001818FF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 887C448323CFB77B001818FF /* GoogleService-Info.plist */; };
+		88828BD823F4730200FEA20E /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88828BD723F4730200FEA20E /* TransactionTableViewCell.swift */; };
 		88987BE623D91918006ACB18 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88987BE523D91918006ACB18 /* CategoryTableViewCell.swift */; };
 		889E1D7123D7A2C600D5F8BB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889E1D7023D7A2C600D5F8BB /* Category.swift */; };
 		88E2A34B23B7AAE0003B5456 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E2A34A23B7AAE0003B5456 /* AppDelegate.swift */; };
@@ -53,6 +54,7 @@
 		88309A3523ED09F50090ABA6 /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
 		886C56DB23EE04E60099268E /* TransactionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewController.swift; sourceTree = "<group>"; };
 		887C448323CFB77B001818FF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		88828BD723F4730200FEA20E /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		88987BE523D91918006ACB18 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		889E1D7023D7A2C600D5F8BB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		88E2A34723B7AAE0003B5456 /* Budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budget.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,6 +199,7 @@
 				889E1D7223D7A2D200D5F8BB /* Data Model */,
 				88E2A35023B7AAE0003B5456 /* Main.storyboard */,
 				88987BE523D91918006ACB18 /* CategoryTableViewCell.swift */,
+				88828BD723F4730200FEA20E /* TransactionTableViewCell.swift */,
 				889E1D7523D7A33A00D5F8BB /* Supporting Files */,
 				88E2A35823B7AAE4003B5456 /* Info.plist */,
 			);
@@ -467,6 +470,7 @@
 				88E2A34B23B7AAE0003B5456 /* AppDelegate.swift in Sources */,
 				88E2A34D23B7AAE0003B5456 /* SceneDelegate.swift in Sources */,
 				889E1D7123D7A2C600D5F8BB /* Category.swift in Sources */,
+				88828BD823F4730200FEA20E /* TransactionTableViewCell.swift in Sources */,
 				88309A3623ED09F50090ABA6 /* AccountTableViewController.swift in Sources */,
 				88309A3023ED08C60090ABA6 /* Accounts.swift in Sources */,
 				886C56DC23EE04E60099268E /* TransactionTableViewController.swift in Sources */,

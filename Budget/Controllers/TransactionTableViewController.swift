@@ -28,8 +28,11 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell // set all the titles
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "transactionCell", for: indexPath) as! CategoryTableViewCell
-        cell.valueText.text = String(format: "$%.2f", transactionList![indexPath.row].amount)
+        let cell = myTableView.dequeueReusableCell(withIdentifier: "transactionCell", for: indexPath) as! TransactionTableViewCell
+        
+        cell.dollarText.text = String(format: "$%.2f", transactionList![indexPath.row].amount)
+        cell.categoryText.text = "Category: " + realm.objects(Category.self)[transactionList![indexPath.row].category].title
+        cell.accountText.text = "Account: " + realm.objects(Accounts.self)[transactionList![indexPath.row].account].title
         cell.textLabel?.text = transactionList?[indexPath.row].title
         return(cell)
     }
@@ -78,7 +81,7 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     @IBAction func plusButtonClicked(_ sender: Any) {
-        let alert = UIAlertController(title: "New Transaction", message: nil, preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "New Transaction", message: "For now, it always adds to the first category and first account", preferredStyle: UIAlertController.Style.alert)
         
         alert.addTextField(configurationHandler: nil)
         alert.textFields![0].placeholder = "Enter a name..."
@@ -124,7 +127,19 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
                 let newTransaction = Transactions()
                 newTransaction.title = transaction.title
                 newTransaction.amount = transaction.amount
+                newTransaction.category = transaction.category
+                newTransaction.account = transaction.account
                 realm.add(newTransaction)
+            }
+            
+            try realm.write {
+                let categories = realm.objects(Category.self)
+                categories[transaction.category].amount += transaction.amount
+            }
+            
+            try realm.write {
+                let accounts = realm.objects(Accounts.self)
+                accounts[transaction.account].balance += transaction.amount
             }
         } catch {
             print("Error saving transaction \(error)")
