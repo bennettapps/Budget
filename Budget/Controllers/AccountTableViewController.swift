@@ -104,11 +104,12 @@ class AccountTableViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func delete(row: Int) { // delete row, and move the balance up to "to be budgeted"
-        let alert = UIAlertController(title: "Delete?", message: "Account will be Deleted and the Balance will be gone forever", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "Delete?", message: "Account will be Deleted and the Balance will be subtracted from total", preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
         
         alert.addAction(UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: {(action) in
+            self.defaults.set(self.defaults.float(forKey: "ToBeBudgeted") - (self.accountList?[row].balance)!, forKey: "ToBeBudgeted")
             try? self.realm.write ({
                 self.realm.delete((self.accountList?[row])!)
                 self.accountList = self.realm.objects(Accounts.self)
