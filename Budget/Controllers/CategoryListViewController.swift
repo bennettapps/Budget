@@ -30,7 +30,7 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() { // load up and read data
         super.viewDidLoad()
     }
-    
+    
     override func viewDidAppear(_ animated: Bool) {
         categoryNames = realm.objects(Category.self)
         myTableView.reloadData()
