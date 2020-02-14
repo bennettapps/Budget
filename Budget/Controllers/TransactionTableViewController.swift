@@ -9,7 +9,6 @@ import UIKit
 import RealmSwift
 
 class TransactionTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
     let realm = try! Realm()
     var transactionList: Results<Transactions>?
     
@@ -17,6 +16,8 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
     
     override func viewDidLoad() { // load up and read data
         super.viewDidLoad()
+    }
+    override func viewDidAppear(_ animated: Bool) {
         transactionList = realm.objects(Transactions.self)
         myTableView.reloadData()
     }
@@ -64,7 +65,7 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
             alert.textFields![1].placeholder = "Enter amount..."
             alert.textFields![1].keyboardType = .decimalPad
             alert.textFields![1].text = String(self.transactionList![indexPath.row].amount)
-
+            
             alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
             
             alert.addAction(UIAlertAction(title: "Save", style: UIAlertAction.Style.default, handler: {(action) in
@@ -86,28 +87,14 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     @IBAction func plusButtonClicked(_ sender: Any) {
-        let alert = UIAlertController(title: "New Transaction", message: "For now, it always adds to the first category and first account", preferredStyle: UIAlertController.Style.alert)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "TransferPopup")
+        self.present(controller, animated: true, completion: nil)
+        (controller as! CategoryPickerView).presenter = self
+    }
         
-        alert.addTextField(configurationHandler: nil)
-        alert.textFields![0].placeholder = "Enter a name..."
-        alert.textFields![0].autocorrectionType = .yes
-        
-        alert.addTextField(configurationHandler: nil)
-        alert.textFields![1].placeholder = "Enter amount..."
-        alert.textFields![1].keyboardType = .decimalPad
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
-        
-        alert.addAction(UIAlertAction(title: "Create", style: UIAlertAction.Style.default, handler: {(action) in
-            if(alert.textFields![0].hasText) {
-                let newTransaction = Transactions()
-                newTransaction.title = alert.textFields![0].text!
-                newTransaction.amount = (alert.textFields![1].text! as NSString).floatValue
-                self.save(transaction: newTransaction)
-            }
-        }))
-        
-        self.present(alert, animated: true, completion: nil)
+    func onDismissPopup() {
+        print("completed")
     }
     
     func delete(row: Int) { // delete row, and move the balance up to "to be budgeted"
