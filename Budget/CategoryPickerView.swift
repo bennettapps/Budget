@@ -21,6 +21,8 @@ class CategoryPickerView: UITableViewController, UIPickerViewDataSource, UIPicke
     var accountSelected: Int = 0
     
     var presenter: TransactionTableViewController? = nil
+    var edit: Bool = false
+    var i: Int = 0
     
     @IBOutlet weak var titleText: UITextField!
     @IBOutlet weak var amountText: UITextField!
@@ -73,7 +75,11 @@ class CategoryPickerView: UITableViewController, UIPickerViewDataSource, UIPicke
         transaction.category = categorySelected
         transaction.account = accountSelected
         
-        presenter!.save(transaction: transaction)
+        if(edit) {
+            presenter!.update(transaction: transaction, i: i)
+        } else {
+            presenter!.save(transaction: transaction)
+        }
         
         self.dismiss(animated: true, completion: nil)
     }
