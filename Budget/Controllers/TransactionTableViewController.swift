@@ -10,6 +10,8 @@ import RealmSwift
 
 class TransactionTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let realm = try! Realm()
+    let defaults = UserDefaults.standard
+
     var transactionList: Results<Transactions>?
     
     @IBOutlet weak var myTableView: UITableView!
@@ -57,9 +59,17 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "TransferPopup")
             self.present(controller, animated: true, completion: nil)
-            (controller as! CategoryPickerView).presenter = self
-            (controller as! CategoryPickerView).edit = true
-            (controller as! CategoryPickerView).i = indexPath.row
+            let pickerView = (controller as! CategoryPickerView)
+            pickerView.presenter = self
+            pickerView.edit = true
+            pickerView.i = indexPath.row
+            pickerView.titleText.text = self.transactionList![indexPath.row].title
+            pickerView.amountText.text = String(abs(self.transactionList![indexPath.row].amount))
+            if(self.transactionList![indexPath.row].amount > 0) {
+                pickerView.positiveSwitch.isOn = true
+            }
+            pickerView.categorySelected = self.transactionList![indexPath.row].category
+            pickerView.accountSelected = self.transactionList![indexPath.row].account
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
@@ -93,6 +103,7 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
     
     func save(transaction: Transactions) { // save row
         do {
+            print(transaction.category)
             try realm.write {
                 let newTransaction = Transactions()
                 newTransaction.title = transaction.title
@@ -102,9 +113,13 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
                 realm.add(newTransaction)
             }
             
-            try realm.write {
-                let categories = realm.objects(Category.self)
-                categories[transaction.category].amount += transaction.amount
+            if(transaction.category != 0) {
+                try realm.write {
+                    let categories = realm.objects(Category.self)
+                    categories[transaction.category - 1].amount += transaction.amount
+                }
+            } else {
+                defaults.set(defaults.float(forKey: "ToBeBudgeted") + transaction.amount, forKey: "ToBeBudgeted")
             }
             
             try realm.write {
@@ -120,10 +135,15 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
     
     func update(transaction: Transactions, i: Int) { // update row
         do {
-            try realm.write {
-                let categories = realm.objects(Category.self)
-                categories[transactionList![i].category].amount -= transactionList![i].amount
-                categories[transaction.category].amount += transaction.amount
+            print(transaction.category)
+            if(transaction.category != 0) {
+                try realm.write {
+                    let categories = realm.objects(Category.self)
+                    categories[transactionList![i].category - 1].amount -= transactionList![i].amount
+                    categories[transaction.category - 1].amount += transaction.amount
+                }
+            } else {
+                defaults.set(defaults.float(forKey: "ToBeBudgeted") + transaction.amount, forKey: "ToBeBudgeted")
             }
             
             try realm.write {

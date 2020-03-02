@@ -65,32 +65,12 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: {(action) in
             self.delete(row: indexPath.row)
         }))
-        alert.addAction(UIAlertAction(title: "Transfer", style: .default, handler: {(action) in
-            //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            //            let myModalViewController = storyboard.instantiateViewController(withIdentifier: "TransferPopup")
-            //            myModalViewController.modalPresentationStyle = UIModalPresentationStyle.automatic
-            //            myModalViewController.modalTransitionStyle = UIModalTransitionStyle.coverVertical
-            //            self.present(myModalViewController, animated: true, completion: nil)
-            
-            
-            let alert = UIAlertController(title: "Transfer Money", message: "This will go from To Be Budgeted for now", preferredStyle: UIAlertController.Style.alert)
-            
-            alert.addTextField(configurationHandler: nil)
-            alert.textFields![0].placeholder = "How much to transfer..."
-            alert.textFields![0].keyboardType = .decimalPad
-            
-            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
-            
-            alert.addAction(UIAlertAction(title: "Transfer", style: UIAlertAction.Style.default, handler: {(action) in
-                if(alert.textFields![0].hasText) {
-                    let newCategory = Category()
-                    newCategory.title = self.categoryNames![indexPath.row].title
-                    newCategory.amount = self.categoryNames![indexPath.row].amount + (alert.textFields![0].text! as NSString).floatValue
-                    self.defaults.set(self.defaults.float(forKey: "ToBeBudgeted") - (alert.textFields![0].text! as NSString).floatValue, forKey: "ToBeBudgeted")
-                    self.toBeBudgeted.text = String(format: "$%.2f", self.defaults.float(forKey: "ToBeBudgeted"))
-                    self.update(category: newCategory, i: indexPath.row)
-                }
-            }))
+        alert.addAction(UIAlertAction(title: "Budget", style: .default, handler: {(action) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "CategoryTransfer")
+            self.present(controller, animated: true, completion: nil)
+            (controller as! TransferView).presenter = self
+            (controller as! TransferView).setStartingSelected(i: indexPath.row)
             
             self.present(alert, animated: true, completion: nil)
         }))
@@ -173,6 +153,8 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
         }
         
         self.myTableView.reloadData()
+        toBeBudgeted.text = String(format: "$%.2f", defaults.float(forKey: "ToBeBudgeted"))
+        stackView.addBackground(color: #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1))
     }
     
     func update(category: Category, i: Int) { // update row
@@ -186,5 +168,7 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
         }
         
         self.myTableView.reloadData()
+        toBeBudgeted.text = String(format: "$%.2f", defaults.float(forKey: "ToBeBudgeted"))
+        stackView.addBackground(color: #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1))
     }
 }

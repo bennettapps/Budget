@@ -30,6 +30,7 @@ class CategoryPickerView: UITableViewController, UIPickerViewDataSource, UIPicke
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        categories.append("To Be Budgeted")
         let categoryResults = realm.objects(Category.self)
         for category in categoryResults {
             categories.append(category.title)
@@ -74,6 +75,10 @@ class CategoryPickerView: UITableViewController, UIPickerViewDataSource, UIPicke
         transaction.amount = (amountText.text! as NSString).floatValue
         transaction.category = categorySelected
         transaction.account = accountSelected
+        
+        if(!positiveSwitch.isOn) {
+            transaction.amount *= -1
+        }
         
         if(edit) {
             presenter!.update(transaction: transaction, i: i)

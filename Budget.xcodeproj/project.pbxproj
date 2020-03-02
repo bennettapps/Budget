@@ -12,6 +12,7 @@
 		88309A3223ED08D90090ABA6 /* Transactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88309A3123ED08D90090ABA6 /* Transactions.swift */; };
 		88309A3623ED09F50090ABA6 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88309A3523ED09F50090ABA6 /* AccountTableViewController.swift */; };
 		886C56DC23EE04E60099268E /* TransactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886C56DB23EE04E60099268E /* TransactionTableViewController.swift */; };
+		886DD85223FFA20C0096CB3B /* TransferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886DD85123FFA20C0096CB3B /* TransferView.swift */; };
 		88714A6223F719B50026EEDB /* CategoryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88714A6123F719B50026EEDB /* CategoryPickerView.swift */; };
 		887C448423CFB77B001818FF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 887C448323CFB77B001818FF /* GoogleService-Info.plist */; };
 		88828BD823F4730200FEA20E /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88828BD723F4730200FEA20E /* TransactionTableViewCell.swift */; };
@@ -54,6 +55,7 @@
 		88309A3123ED08D90090ABA6 /* Transactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transactions.swift; sourceTree = "<group>"; };
 		88309A3523ED09F50090ABA6 /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
 		886C56DB23EE04E60099268E /* TransactionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewController.swift; sourceTree = "<group>"; };
+		886DD85123FFA20C0096CB3B /* TransferView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferView.swift; sourceTree = "<group>"; };
 		88714A6123F719B50026EEDB /* CategoryPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerView.swift; sourceTree = "<group>"; };
 		887C448323CFB77B001818FF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		88828BD723F4730200FEA20E /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				889E1D7323D7A2E500D5F8BB /* Controllers */,
 				889E1D7223D7A2D200D5F8BB /* Data Model */,
 				88E2A35023B7AAE0003B5456 /* Main.storyboard */,
+				886DD85123FFA20C0096CB3B /* TransferView.swift */,
 				88714A6123F719B50026EEDB /* CategoryPickerView.swift */,
 				88987BE523D91918006ACB18 /* CategoryTableViewCell.swift */,
 				88828BD723F4730200FEA20E /* TransactionTableViewCell.swift */,
@@ -468,6 +471,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88987BE623D91918006ACB18 /* CategoryTableViewCell.swift in Sources */,
+				886DD85223FFA20C0096CB3B /* TransferView.swift in Sources */,
 				88E2A34F23B7AAE0003B5456 /* CategoryListViewController.swift in Sources */,
 				88309A3223ED08D90090ABA6 /* Transactions.swift in Sources */,
 				88E2A34B23B7AAE0003B5456 /* AppDelegate.swift in Sources */,
