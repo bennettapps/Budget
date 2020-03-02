@@ -16,28 +16,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="jA6-IS-zcW">
-                                <rect key="frame" x="0.0" y="88" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="88"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Be Budgeted" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxy-fk-3HL">
-                                        <rect key="frame" x="20" y="8" width="187" height="84"/>
+                                        <rect key="frame" x="20" y="8" width="187" height="72"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.0" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LlQ-EM-sJa">
-                                        <rect key="frame" x="207" y="8" width="187" height="84"/>
+                                        <rect key="frame" x="207" y="8" width="187" height="72"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="cvR-vC-Jbo"/>
+                                    <constraint firstAttribute="height" constant="88" id="cvR-vC-Jbo"/>
                                 </constraints>
                                 <edgeInsets key="layoutMargins" top="8" left="20" bottom="8" right="20"/>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KxW-8R-9Ln">
-                                <rect key="frame" x="0.0" y="188" width="414" height="625"/>
+                                <rect key="frame" x="0.0" y="176" width="414" height="637"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="tdy-WI-0VA" customClass="CategoryTableViewCell" customModule="Budget" customModuleProvider="target">
@@ -112,7 +112,7 @@
         <scene sceneID="5sm-JH-TMS">
             <objects>
                 <tableViewController storyboardIdentifier="TransferPopup" automaticallyAdjustsScrollViewInsets="NO" id="L4j-6Y-j5L" customClass="CategoryPickerView" customModule="Budget" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="IP2-Wz-BNM">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="IP2-Wz-BNM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -383,7 +383,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ff-bg-ciY">
-                                                    <rect key="frame" x="294" y="11" width="100" height="66"/>
+                                                    <rect key="frame" x="349" y="11" width="45" height="66"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="yXG-Du-ZDd"/>
                                                     </constraints>
@@ -392,35 +392,34 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="GgB-cX-FxS">
-                                                    <rect key="frame" x="34" y="56.5" width="360" height="20.5"/>
+                                                    <rect key="frame" x="20" y="56.5" width="374" height="20.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category: Entertainment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaU-Vw-XbE">
-                                                            <rect key="frame" x="0.0" y="0.0" width="180" height="20.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Be Budgeted" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaU-Vw-XbE">
+                                                            <rect key="frame" x="0.0" y="0.0" width="187" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account: Cash" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OY2-Nz-G14">
-                                                            <rect key="frame" x="180" y="0.0" width="180" height="20.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amazon Gift Card" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OY2-Nz-G14">
+                                                            <rect key="frame" x="187" y="0.0" width="187" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20.5" id="fwG-71-SKv"/>
+                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="GgB-cX-FxS" secondAttribute="trailing" constant="20" symbolic="YES" id="6EM-HV-Y9A"/>
-                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="4ff-bg-ciY" secondAttribute="trailing" id="LRW-IQ-vUG"/>
-                                                <constraint firstItem="4ff-bg-ciY" firstAttribute="leading" relation="lessThanOrEqual" secondItem="sq7-G8-zcS" secondAttribute="leadingMargin" constant="329" id="Ly1-T9-4Zi"/>
-                                                <constraint firstItem="GgB-cX-FxS" firstAttribute="bottom" secondItem="sq7-G8-zcS" secondAttribute="bottomMargin" id="MTy-S0-NM4"/>
-                                                <constraint firstItem="4ff-bg-ciY" firstAttribute="top" secondItem="sq7-G8-zcS" secondAttribute="topMargin" id="SdZ-nc-DhI"/>
-                                                <constraint firstItem="4ff-bg-ciY" firstAttribute="leading" secondItem="sq7-G8-zcS" secondAttribute="leadingMargin" constant="274" id="UCE-7B-AEa"/>
-                                                <constraint firstItem="4ff-bg-ciY" firstAttribute="top" secondItem="sq7-G8-zcS" secondAttribute="topMargin" id="ZAr-mw-Zf7"/>
-                                                <constraint firstItem="4ff-bg-ciY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="sq7-G8-zcS" secondAttribute="trailingMargin" id="ly1-wc-pB6"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="4ff-bg-ciY" secondAttribute="bottom" id="srK-dh-8MF"/>
-                                                <constraint firstItem="GgB-cX-FxS" firstAttribute="bottom" secondItem="sq7-G8-zcS" secondAttribute="bottomMargin" id="teD-kP-afV"/>
-                                                <constraint firstItem="4ff-bg-ciY" firstAttribute="bottom" secondItem="sq7-G8-zcS" secondAttribute="bottomMargin" id="vOz-kQ-U78"/>
+                                                <constraint firstItem="4ff-bg-ciY" firstAttribute="bottom" secondItem="sq7-G8-zcS" secondAttribute="bottomMargin" id="3bA-yy-VxY"/>
+                                                <constraint firstItem="GgB-cX-FxS" firstAttribute="top" secondItem="sq7-G8-zcS" secondAttribute="topMargin" constant="45.5" id="4Bb-2T-Ukf"/>
+                                                <constraint firstItem="4ff-bg-ciY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sq7-G8-zcS" secondAttribute="leadingMargin" constant="274" id="Dsf-nA-ozG"/>
+                                                <constraint firstItem="4ff-bg-ciY" firstAttribute="trailing" secondItem="sq7-G8-zcS" secondAttribute="trailingMargin" id="OWR-ox-LSi"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="GgB-cX-FxS" secondAttribute="trailing" id="Y6i-iK-ar3"/>
+                                                <constraint firstItem="4ff-bg-ciY" firstAttribute="top" secondItem="sq7-G8-zcS" secondAttribute="topMargin" id="fYL-Jm-M1M"/>
+                                                <constraint firstItem="GgB-cX-FxS" firstAttribute="leading" secondItem="sq7-G8-zcS" secondAttribute="leadingMargin" id="okX-6H-h0a"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -618,14 +617,13 @@
         <scene sceneID="Oag-WH-8b1">
             <objects>
                 <tableViewController storyboardIdentifier="CategoryTransfer" automaticallyAdjustsScrollViewInsets="NO" id="MA6-04-Vra" customClass="TransferView" customModule="Budget" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dT4-c0-vMN">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dT4-c0-vMN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <sections>
                             <tableViewSection id="LY9-el-XAE">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="1ca-lI-NUD">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="1ca-lI-NUD">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1ca-lI-NUD" id="0pM-ek-B5i">

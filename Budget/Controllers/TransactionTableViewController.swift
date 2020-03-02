@@ -35,11 +35,11 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
         
         cell.dollarText.text = String(format: "$%.2f", transactionList![indexPath.row].amount)
         if(transactionList![indexPath.row].category != 0) {
-            cell.categoryText.text = "Category: " + realm.objects(Category.self)[transactionList![indexPath.row].category - 1].title
+            cell.categoryText.text = realm.objects(Category.self)[transactionList![indexPath.row].category - 1].title
         } else {
-            cell.categoryText.text = "Category: To Be Budgeted"
+            cell.categoryText.text = "To Be Budgeted"
         }
-        cell.accountText.text = "Account: " + realm.objects(Accounts.self)[transactionList![indexPath.row].account].title
+        cell.accountText.text = realm.objects(Accounts.self)[transactionList![indexPath.row].account].title
         cell.textLabel?.text = transactionList?[indexPath.row].title
         return(cell)
     }

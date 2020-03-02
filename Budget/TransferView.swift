@@ -75,9 +75,11 @@ class TransferView: UITableViewController, UIPickerViewDataSource, UIPickerViewD
             toCategory.amount = categoryResults[toSelected].amount + (transferMoney.text! as NSString).floatValue
             presenter!.update(category: toCategory, i: toSelected)
         } else {
-            defaults.set(defaults.float(forKey: "ToBeBudgeted") - (transferMoney.text! as NSString).floatValue, forKey: "ToBeBudgeted")
+            defaults.set(defaults.float(forKey: "ToBeBudgeted") + (transferMoney.text! as NSString).floatValue, forKey: "ToBeBudgeted")
             print("to selected is to be budgeted")
         }
+        
+        presenter!.refreshValues()
         
         self.dismiss(animated: true, completion: nil)
     }
