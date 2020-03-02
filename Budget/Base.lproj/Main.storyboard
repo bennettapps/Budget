@@ -352,7 +352,9 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="accountPickerView" destination="dbx-Zx-BhX" id="lg5-94-Bq3"/>
                         <outlet property="amountText" destination="65J-7p-w51" id="NHv-AU-nC2"/>
+                        <outlet property="categoryPickerView" destination="ZgG-u9-vUl" id="NiX-I7-mcD"/>
                         <outlet property="positiveSwitch" destination="pJQ-Bl-7rh" id="d66-Ui-jy8"/>
                         <outlet property="titleText" destination="8QH-Ub-YMQ" id="FuA-zV-VWS"/>
                     </connections>

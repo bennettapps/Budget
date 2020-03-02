@@ -27,6 +27,8 @@ class CategoryPickerView: UITableViewController, UIPickerViewDataSource, UIPicke
     @IBOutlet weak var titleText: UITextField!
     @IBOutlet weak var amountText: UITextField!
     @IBOutlet weak var positiveSwitch: UISwitch!
+    @IBOutlet weak var categoryPickerView: UIPickerView!
+    @IBOutlet weak var accountPickerView: UIPickerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +41,13 @@ class CategoryPickerView: UITableViewController, UIPickerViewDataSource, UIPicke
         for account in accountResults {
             accounts.append(account.title)
         }
+    }
+    
+    public func setStartingSelected(category: Int, account: Int) {
+        categorySelected = category
+        accountSelected = account
+        categoryPickerView.selectRow(category, inComponent: 0, animated: false)
+        accountPickerView.selectRow(account, inComponent: 0, animated: false)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

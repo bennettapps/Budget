@@ -11,7 +11,7 @@ import RealmSwift
 class TransactionTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let realm = try! Realm()
     let defaults = UserDefaults.standard
-
+    
     var transactionList: Results<Transactions>?
     
     @IBOutlet weak var myTableView: UITableView!
@@ -34,7 +34,11 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
         let cell = myTableView.dequeueReusableCell(withIdentifier: "transactionCell", for: indexPath) as! TransactionTableViewCell
         
         cell.dollarText.text = String(format: "$%.2f", transactionList![indexPath.row].amount)
-        cell.categoryText.text = "Category: " + realm.objects(Category.self)[transactionList![indexPath.row].category].title
+        if(transactionList![indexPath.row].category != 0) {
+            cell.categoryText.text = "Category: " + realm.objects(Category.self)[transactionList![indexPath.row].category - 1].title
+        } else {
+            cell.categoryText.text = "Category: To Be Budgeted"
+        }
         cell.accountText.text = "Account: " + realm.objects(Accounts.self)[transactionList![indexPath.row].account].title
         cell.textLabel?.text = transactionList?[indexPath.row].title
         return(cell)
@@ -68,8 +72,7 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
             if(self.transactionList![indexPath.row].amount > 0) {
                 pickerView.positiveSwitch.isOn = true
             }
-            pickerView.categorySelected = self.transactionList![indexPath.row].category
-            pickerView.accountSelected = self.transactionList![indexPath.row].account
+            pickerView.setStartingSelected(category: self.transactionList![indexPath.row].category, account: self.transactionList![indexPath.row].account)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         

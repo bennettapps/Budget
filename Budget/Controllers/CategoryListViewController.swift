@@ -33,8 +33,7 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidAppear(_ animated: Bool) {
         categoryNames = realm.objects(Category.self)
-        myTableView.reloadData()
-        toBeBudgeted.text = String(format: "$%.2f", defaults.float(forKey: "ToBeBudgeted"))
+        refreshValues()
         stackView.addBackground(color: #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1))
     }
     
@@ -152,9 +151,7 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
             print("Error saving category \(error)")
         }
         
-        self.myTableView.reloadData()
-        toBeBudgeted.text = String(format: "$%.2f", defaults.float(forKey: "ToBeBudgeted"))
-        stackView.addBackground(color: #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1))
+        refreshValues()
     }
     
     func update(category: Category, i: Int) { // update row
@@ -167,8 +164,11 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
             print("Error updating category \(error)")
         }
         
+        refreshValues()
+    }
+    
+    public func refreshValues() {
         self.myTableView.reloadData()
         toBeBudgeted.text = String(format: "$%.2f", defaults.float(forKey: "ToBeBudgeted"))
-        stackView.addBackground(color: #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1))
     }
 }
