@@ -19,9 +19,20 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
     override func viewDidLoad() { // load up and read data
         super.viewDidLoad()
     }
+    
     override func viewDidAppear(_ animated: Bool) {
-        transactionList = realm.objects(Transactions.self)
-        myTableView.reloadData()
+        if(realm.objects(Accounts.self).count < 1) {
+            let alert = UIAlertController(title: "Need Accounts", message: "You must create at least one account before making transactions", preferredStyle: UIAlertController.Style.alert)
+            
+            alert.addAction(UIAlertAction(title: "Accounts", style: UIAlertAction.Style.default, handler: {(action) in
+                self.tabBarController?.selectedIndex = 1
+            }))
+            
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            transactionList = realm.objects(Transactions.self)
+            myTableView.reloadData()
+        }
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int // set correct number of rows
@@ -35,12 +46,24 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
         
         cell.dollarText.text = String(format: "$%.2f", transactionList![indexPath.row].amount)
         if(transactionList![indexPath.row].category != 0) {
-            cell.categoryText.text = realm.objects(Category.self)[transactionList![indexPath.row].category - 1].title
+            let categories = realm.objects(Category.self)
+            
+            if(categories.count >= transactionList![indexPath.row].category) {
+                cell.categoryText.text = categories[transactionList![indexPath.row].category - 1].title
+            } else {
+                cell.categoryText.text = "MISSING"
+            }
         } else {
             cell.categoryText.text = "To Be Budgeted"
         }
-        cell.accountText.text = realm.objects(Accounts.self)[transactionList![indexPath.row].account].title
-        cell.textLabel?.text = transactionList?[indexPath.row].title
+        
+        let accounts = realm.objects(Accounts.self)
+        if(accounts.count >= transactionList![indexPath.row].account + 1) {
+            cell.accountText.text = accounts[transactionList![indexPath.row].account].title
+            cell.textLabel?.text = transactionList?[indexPath.row].title
+        } else {
+            cell.accountText.text = "MISSING"
+        }
         return(cell)
     }
     
@@ -89,11 +112,25 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func delete(row: Int) { // delete row, and move the balance up to "to be budgeted"
-        let alert = UIAlertController(title: "Delete?", message: "Transaction will be Deleted and the Balance will be gone forever", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "Delete?", message: "Transaction will be Deleted and the Balance will be returned", preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
         
         alert.addAction(UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: {(action) in
+            let categories = self.realm.objects(Category.self)
+            let accounts = self.realm.objects(Accounts.self)
+            let balance = self.transactionList?[row].amount
+
+            try? self.realm.write ({
+                let category = self.transactionList?[row].category
+                if(category != 0) {
+                    categories[category! - 1].amount -= balance!
+                } else {
+                    self.defaults.set(self.defaults.float(forKey: "ToBeBudgeted") - balance!, forKey: "ToBeBudgeted")
+                }
+                accounts[(self.transactionList?[row].account)!].balance -= balance!
+            })
+            
             try? self.realm.write ({
                 self.realm.delete((self.transactionList?[row])!)
                 self.transactionList = self.realm.objects(Transactions.self)
