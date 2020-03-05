@@ -21,7 +21,7 @@ class AccountTableViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        accountList = realm.objects(Accounts.self)
+        accountList = realm.objects(Accounts.self).sorted(byKeyPath: "date", ascending: false)
         myTableView.reloadData()
     }
     
@@ -115,7 +115,7 @@ class AccountTableViewController: UIViewController, UITableViewDelegate, UITable
             self.defaults.set(self.defaults.float(forKey: "ToBeBudgeted") - (self.accountList?[row].balance)!, forKey: "ToBeBudgeted")
             try? self.realm.write ({
                 self.realm.delete((self.accountList?[row])!)
-                self.accountList = self.realm.objects(Accounts.self)
+                self.accountList = self.realm.objects(Accounts.self).sorted(byKeyPath: "date", ascending: false)
             })
             self.myTableView.reloadData()
         }))

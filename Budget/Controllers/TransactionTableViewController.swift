@@ -30,7 +30,7 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
             
             self.present(alert, animated: true, completion: nil)
         } else {
-            transactionList = realm.objects(Transactions.self)
+            transactionList = realm.objects(Transactions.self).sorted(byKeyPath: "date", ascending: false)
             myTableView.reloadData()
         }
     }
@@ -133,7 +133,7 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
             
             try? self.realm.write ({
                 self.realm.delete((self.transactionList?[row])!)
-                self.transactionList = self.realm.objects(Transactions.self)
+                self.transactionList = self.realm.objects(Transactions.self).sorted(byKeyPath: "date", ascending: false)
             })
             self.myTableView.reloadData()
         }))

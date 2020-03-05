@@ -12,4 +12,5 @@ import RealmSwift
 class Accounts: Object {
     @objc dynamic var title : String = ""
     @objc dynamic var balance: Float = 0.00
+    @objc dynamic var date: NSDate = NSDate()
 }

@@ -32,7 +32,7 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        categoryNames = realm.objects(Category.self)
+        categoryNames = realm.objects(Category.self).sorted(byKeyPath: "date", ascending: false)
         refreshValues()
         stackView.addBackground(color: #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1))
     }
@@ -123,17 +123,18 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
     
     func delete(row: Int) { // delete row, and move the balance up to "to be budgeted"
         let alert = UIAlertController(title: "Delete?", message: "Category will be Deleted and the Balance will be Transferred back to 'To Be Budgeted'", preferredStyle: UIAlertController.Style.alert)
-        
+                
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
         
         alert.addAction(UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: {(action) in
+            let deletingBalance = self.categoryNames?[row].amount
+            self.defaults.set(self.defaults.float(forKey: "ToBeBudgeted") + deletingBalance!, forKey: "ToBeBudgeted")
+            self.toBeBudgeted.text = String(format: "$%.2f", self.defaults.float(forKey: "ToBeBudgeted"))
+
             try? self.realm.write ({
-                let deletingBalance = self.categoryNames?[row].amount
-                self.defaults.set(self.defaults.float(forKey: "ToBeBudgeted") + deletingBalance!, forKey: "ToBeBudgeted")
-                self.toBeBudgeted.text = String(format: "$%.2f", self.defaults.float(forKey: "ToBeBudgeted"))
                 self.realm.delete((self.categoryNames?[row])!)
-                self.categoryNames = self.realm.objects(Category.self)
             })
+            self.categoryNames = self.realm.objects(Category.self).sorted(byKeyPath: "date", ascending: false)
             self.myTableView.reloadData()
         }))
         

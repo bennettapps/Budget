@@ -14,4 +14,5 @@ class Transactions: Object {
     @objc dynamic var amount: Float = 0.00
     @objc dynamic var account: Int = 0
     @objc dynamic var category: Int = 0
+    @objc dynamic var date: NSDate = NSDate()
 }

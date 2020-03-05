@@ -12,4 +12,5 @@ import RealmSwift
 class Category: Object {
     @objc dynamic var title : String = ""
     @objc dynamic var amount: Float = 0.00
+    @objc dynamic var date: NSDate = NSDate()
 }
