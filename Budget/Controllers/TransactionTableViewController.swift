@@ -8,6 +8,8 @@
 import UIKit
 import RealmSwift
 
+// this will just map the values of everythig to the list and let u edit them. simple! :(
+
 class TransactionTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let realm = try! Realm()
     let defaults = UserDefaults.standard
@@ -30,7 +32,11 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
             
             self.present(alert, animated: true, completion: nil)
         } else {
-            transactionList = realm.objects(Transactions.self).sorted(byKeyPath: "date", ascending: false)
+            let objects = realm.objects(Transactions.self)
+            
+            if(objects.count > 0) {
+                transactionList = objects.sorted(byKeyPath: "date", ascending: false)
+            }
             myTableView.reloadData()
         }
     }
@@ -40,30 +46,45 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
         return transactionList?.count ?? 0
     }
     
+    func findCategoryByDate(date: NSDate) -> Category? {
+        let categories = realm.objects(Category.self)
+        for c in categories {
+            if(c.date == date) {
+                return (c)
+            }
+        }
+        return nil
+    }
+    
+    func findAccountByDate(date: NSDate) -> Accounts? {
+        let accounts = realm.objects(Accounts.self)
+        for a in accounts {
+            if(a.date == date) {
+                return a
+            }
+        }
+        return nil
+    }
+    
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell // set all the titles
     {
         let cell = myTableView.dequeueReusableCell(withIdentifier: "transactionCell", for: indexPath) as! TransactionTableViewCell
+        let transaction = transactionList![indexPath.row]
         
-        cell.dollarText.text = String(format: "$%.2f", transactionList![indexPath.row].amount)
-        if(transactionList![indexPath.row].category != 0) {
-            let categories = realm.objects(Category.self)
-            
-            if(categories.count >= transactionList![indexPath.row].category) {
-                cell.categoryText.text = categories[transactionList![indexPath.row].category - 1].title
-            } else {
-                cell.categoryText.text = "MISSING"
-            }
+        cell.dollarText.text = String(format: "$%.2f", transaction.amount)
+        cell.textLabel?.text = transaction.title
+        
+        if(!transaction.toBeBudgeted) {
+            let category = findCategoryByDate(date: transaction.category!)
+                        
+            cell.categoryText.text = category?.title ?? "DELETED"
         } else {
             cell.categoryText.text = "To Be Budgeted"
         }
         
-        let accounts = realm.objects(Accounts.self)
-        if(accounts.count >= transactionList![indexPath.row].account + 1) {
-            cell.accountText.text = accounts[transactionList![indexPath.row].account].title
-            cell.textLabel?.text = transactionList?[indexPath.row].title
-        } else {
-            cell.accountText.text = "MISSING"
-        }
+        let account = findAccountByDate(date: transaction.account!)
+        cell.accountText.text = account?.title ?? "DELETED"
+        
         return(cell)
     }
     
@@ -71,7 +92,7 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
     {
         if(editingStyle == UITableViewCell.EditingStyle.delete)
         {
-            delete(row: indexPath.row)
+            self.deleteRow(row: indexPath.row)
         }
     }
     
@@ -79,7 +100,7 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
         
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: {(action) in
-            self.delete(row: indexPath.row)
+            self.deleteRow(row: indexPath.row)
         }))
         
         alert.addAction(UIAlertAction(title: "Edit", style: .default, handler: {(action) in
@@ -95,7 +116,33 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
             if(self.transactionList![indexPath.row].amount > 0) {
                 pickerView.positiveSwitch.isOn = true
             }
-            pickerView.setStartingSelected(category: self.transactionList![indexPath.row].category, account: self.transactionList![indexPath.row].account)
+            
+            let categories = self.realm.objects(Category.self).sorted(byKeyPath: "date", ascending: false)
+            let accounts = self.realm.objects(Accounts.self).sorted(byKeyPath: "date", ascending: false)
+
+            var category = 1
+            var account = 0
+            for c in categories {
+                print(category)
+                if(c.date == self.transactionList![indexPath.row].category) {
+                    print("found it!")
+                    break
+                }
+                category += 1
+            }
+            
+            if(category > categories.count) {
+                category = 0
+            }
+            
+            for a in accounts {
+                if(a.date == self.transactionList![indexPath.row].account) {
+                    break
+                }
+                account += 1
+            }
+                    
+            pickerView.setStartingSelected(category: category, account: account)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
@@ -111,24 +158,27 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
         (controller as! CategoryPickerView).presenter = self
     }
     
-    func delete(row: Int) { // delete row, and move the balance up to "to be budgeted"
+    func deleteRow(row: Int) { // delete row, and move the balance up to "to be budgeted"
         let alert = UIAlertController(title: "Delete?", message: "Transaction will be Deleted and the Balance will be returned", preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
         
         alert.addAction(UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: {(action) in
-            let categories = self.realm.objects(Category.self)
-            let accounts = self.realm.objects(Accounts.self)
             let balance = self.transactionList?[row].amount
-
+            let transaction = self.transactionList![row]
             try? self.realm.write ({
-                let category = self.transactionList?[row].category
-                if(category != 0) {
-                    categories[category! - 1].amount -= balance!
+                if(!transaction.toBeBudgeted) {
+                    if(transaction.category != nil) {
+                        let category = self.findCategoryByDate(date: transaction.category!)
+                        category?.amount -= balance!
+                    }
                 } else {
                     self.defaults.set(self.defaults.float(forKey: "ToBeBudgeted") - balance!, forKey: "ToBeBudgeted")
                 }
-                accounts[(self.transactionList?[row].account)!].balance -= balance!
+                
+                if(transaction.account != nil) {
+                    self.findAccountByDate(date: transaction.account!)?.balance -= balance!
+                }
             })
             
             try? self.realm.write ({
@@ -143,54 +193,69 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
     
     func save(transaction: Transactions) { // save row
         do {
-            print(transaction.category)
             try realm.write {
                 let newTransaction = Transactions()
                 newTransaction.title = transaction.title
                 newTransaction.amount = transaction.amount
                 newTransaction.category = transaction.category
                 newTransaction.account = transaction.account
+                newTransaction.toBeBudgeted = transaction.toBeBudgeted
                 realm.add(newTransaction)
             }
             
-            if(transaction.category != 0) {
+            if(!transaction.toBeBudgeted) {
                 try realm.write {
-                    let categories = realm.objects(Category.self)
-                    categories[transaction.category - 1].amount += transaction.amount
+                    findCategoryByDate(date: transaction.category!)?.amount += transaction.amount
                 }
             } else {
                 defaults.set(defaults.float(forKey: "ToBeBudgeted") + transaction.amount, forKey: "ToBeBudgeted")
             }
             
             try realm.write {
-                let accounts = realm.objects(Accounts.self)
-                accounts[transaction.account].balance += transaction.amount
+                findAccountByDate(date: transaction.account!)?.balance += transaction.amount
             }
         } catch {
             print("Error saving transaction \(error)")
         }
         
+        transactionList = realm.objects(Transactions.self).sorted(byKeyPath: "date", ascending: false)
         self.myTableView.reloadData()
     }
     
     func update(transaction: Transactions, i: Int) { // update row
         do {
-            print(transaction.category)
-            if(transaction.category != 0) {
-                try realm.write {
-                    let categories = realm.objects(Category.self)
-                    categories[transactionList![i].category - 1].amount -= transactionList![i].amount
-                    categories[transaction.category - 1].amount += transaction.amount
+            let balance = self.transactionList?[i].amount
+            let oldTransaction = self.transactionList![i]
+            try? self.realm.write ({
+                if(!oldTransaction.toBeBudgeted) {
+                    if(oldTransaction.category != nil) {
+                        let category = self.findCategoryByDate(date: oldTransaction.category!)
+                        category?.amount -= balance!
+                    }
+                } else {
+                    self.defaults.set(self.defaults.float(forKey: "ToBeBudgeted") - balance!, forKey: "ToBeBudgeted")
                 }
-            } else {
-                defaults.set(defaults.float(forKey: "ToBeBudgeted") + transaction.amount, forKey: "ToBeBudgeted")
-            }
+                
+                if(oldTransaction.account != nil) {
+                    self.findAccountByDate(date: oldTransaction.account!)?.balance -= balance!
+                }
+            })
             
-            try realm.write {
-                let accounts = realm.objects(Accounts.self)
-                accounts[transactionList![i].account].balance -= transactionList![i].amount
-                accounts[transaction.account].balance += transaction.amount
-            }
+            let newBalance = transaction.amount
+            try? self.realm.write ({
+                if(!oldTransaction.toBeBudgeted) {
+                    if(oldTransaction.category != nil) {
+                        let category = self.findCategoryByDate(date: oldTransaction.category!)
+                        category?.amount += newBalance
+                    }
+                } else {
+                    self.defaults.set(self.defaults.float(forKey: "ToBeBudgeted") + newBalance, forKey: "ToBeBudgeted")
+                }
+                
+                if(oldTransaction.account != nil) {
+                    self.findAccountByDate(date: oldTransaction.account!)?.balance += newBalance
+                }
+            })
             
             try realm.write {
                 transactionList![i].title = transaction.title

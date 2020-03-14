@@ -33,11 +33,11 @@ class CategoryPickerView: UITableViewController, UIPickerViewDataSource, UIPicke
     override func viewDidLoad() {
         super.viewDidLoad()
         categories.append("To Be Budgeted")
-        let categoryResults = realm.objects(Category.self)
+        let categoryResults = realm.objects(Category.self).sorted(byKeyPath: "date", ascending: false)
         for category in categoryResults {
             categories.append(category.title)
         }
-        let accountResults = realm.objects(Accounts.self)
+        let accountResults = realm.objects(Accounts.self).sorted(byKeyPath: "date", ascending: false)
         for account in accountResults {
             accounts.append(account.title)
         }
@@ -79,11 +79,20 @@ class CategoryPickerView: UITableViewController, UIPickerViewDataSource, UIPicke
     }
     
     @IBAction func onSaveClicked(_ sender: Any) {
+        print("STARTED")
         let transaction = Transactions()
         transaction.title = titleText.text!
         transaction.amount = (amountText.text! as NSString).floatValue
-        transaction.category = categorySelected
-        transaction.account = accountSelected
+        if(categorySelected != 0) {
+            transaction.category = realm.objects(Category.self).sorted(byKeyPath: "date", ascending: false)[categorySelected - 1].date
+            print(realm.objects(Category.self).sorted(byKeyPath: "date", ascending: false)[0])
+            print(categorySelected)
+        } else {
+            print("TO BE BUDGETED")
+            transaction.toBeBudgeted = true
+        }
+        
+        transaction.account = realm.objects(Accounts.self).sorted(byKeyPath: "date", ascending: false)[accountSelected].date
         
         if(!positiveSwitch.isOn) {
             transaction.amount *= -1
