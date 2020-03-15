@@ -60,14 +60,21 @@ class AccountTableViewController: UIViewController, UITableViewDelegate, UITable
             alert.textFields![0].placeholder = "Enter a name..."
             alert.textFields![0].text = self.accountList![indexPath.row].title
             alert.textFields![0].autocorrectionType = .yes
+
+            alert.addTextField(configurationHandler: nil)
+            alert.textFields![1].placeholder = "Enter starting balance..."
+            alert.textFields![1].text = String(self.accountList![indexPath.row].startingBalance)
+            alert.textFields![1].keyboardType = .decimalPad
             
             alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
             
             alert.addAction(UIAlertAction(title: "Save", style: UIAlertAction.Style.default, handler: {(action) in
                 if(alert.textFields![0].hasText) {
                     let newAccount = Accounts()
+                    let newStartingBalance = (alert.textFields![1].text! as NSString).floatValue
                     newAccount.title = alert.textFields![0].text!
-                    newAccount.balance = self.accountList![indexPath.row].balance
+                    newAccount.balance = self.accountList![indexPath.row].balance - self.accountList![indexPath.row].startingBalance + newStartingBalance
+                    newAccount.startingBalance = newStartingBalance
                     self.update(account: newAccount, i: indexPath.row)
                 }
             }))
@@ -99,6 +106,7 @@ class AccountTableViewController: UIViewController, UITableViewDelegate, UITable
                 let newAccount = Accounts()
                 newAccount.title = alert.textFields![0].text!
                 newAccount.balance = (alert.textFields![1].text! as NSString).floatValue
+                newAccount.startingBalance = newAccount.balance
                 self.save(account: newAccount)
             }
         }))
@@ -129,6 +137,7 @@ class AccountTableViewController: UIViewController, UITableViewDelegate, UITable
                 let newAccount = Accounts()
                 newAccount.title = account.title
                 newAccount.balance = account.balance
+                newAccount.startingBalance = account.startingBalance
                 realm.add(newAccount)
                 defaults.set(defaults.float(forKey: "ToBeBudgeted") + account.balance, forKey: "ToBeBudgeted")
             }
@@ -144,6 +153,8 @@ class AccountTableViewController: UIViewController, UITableViewDelegate, UITable
             try realm.write {
                 accountList![i].title = account.title
                 accountList![i].balance = account.balance
+                defaults.set(defaults.float(forKey: "ToBeBudgeted") - accountList![i].startingBalance + account.startingBalance, forKey: "ToBeBudgeted")
+                accountList![i].startingBalance = account.startingBalance
             }
         } catch {
             print("Error updating account \(error)")
