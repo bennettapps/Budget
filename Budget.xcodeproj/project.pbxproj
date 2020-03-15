@@ -48,10 +48,6 @@
 		88E2A35323B7AAE4003B5456 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		88E2A35623B7AAE4003B5456 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88E2A35823B7AAE4003B5456 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		88E2A36123B7AAE4003B5456 /* BudgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTests.swift; sourceTree = "<group>"; };
-		88E2A36323B7AAE4003B5456 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		88E2A36C23B7AAE4003B5456 /* BudgetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetUITests.swift; sourceTree = "<group>"; };
-		88E2A36E23B7AAE4003B5456 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BCB38FE74560152434D0F33 /* Pods_Budget_BudgetUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Budget_BudgetUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3CF79DBA84611A12BB34675 /* Pods-BudgetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BudgetTests.debug.xcconfig"; path = "Target Support Files/Pods-BudgetTests/Pods-BudgetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B7BB14E5F6E7DEFE0E9D7673 /* Pods_BudgetTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BudgetTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,48 +91,10 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		889E1D7223D7A2D200D5F8BB /* Data Model */ = {
-			isa = PBXGroup;
-			children = (
-				889E1D7023D7A2C600D5F8BB /* Category.swift */,
-				88309A2F23ED08C60090ABA6 /* Accounts.swift */,
-				88309A3123ED08D90090ABA6 /* Transactions.swift */,
-			);
-			path = "Data Model";
-			sourceTree = "<group>";
-		};
-		889E1D7323D7A2E500D5F8BB /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				88E2A34E23B7AAE0003B5456 /* CategoryListViewController.swift */,
-				88309A3523ED09F50090ABA6 /* AccountTableViewController.swift */,
-				886C56DB23EE04E60099268E /* TransactionTableViewController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		889E1D7423D7A30E00D5F8BB /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		889E1D7523D7A33A00D5F8BB /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				88E2A35323B7AAE4003B5456 /* Assets.xcassets */,
-				88E2A35523B7AAE4003B5456 /* LaunchScreen.storyboard */,
-			);
-			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		88E2A33E23B7AAE0003B5456 = {
 			isa = PBXGroup;
 			children = (
 				88E2A34923B7AAE0003B5456 /* Budget */,
-				88E2A36023B7AAE4003B5456 /* BudgetTests */,
-				88E2A36B23B7AAE4003B5456 /* BudgetUITests */,
 				88E2A34823B7AAE0003B5456 /* Products */,
 				4F943C51739040803B8654ED /* Pods */,
 				4A4DF522BC624EE97B22BE39 /* Frameworks */,
@@ -154,39 +112,25 @@
 		88E2A34923B7AAE0003B5456 /* Budget */ = {
 			isa = PBXGroup;
 			children = (
-				889E1D7423D7A30E00D5F8BB /* Views */,
 				887C448323CFB77B001818FF /* GoogleService-Info.plist */,
 				88E2A34A23B7AAE0003B5456 /* AppDelegate.swift */,
 				88E2A34C23B7AAE0003B5456 /* SceneDelegate.swift */,
-				889E1D7323D7A2E500D5F8BB /* Controllers */,
-				889E1D7223D7A2D200D5F8BB /* Data Model */,
+				88E2A34E23B7AAE0003B5456 /* CategoryListViewController.swift */,
+				88309A3523ED09F50090ABA6 /* AccountTableViewController.swift */,
+				886C56DB23EE04E60099268E /* TransactionTableViewController.swift */,
+				889E1D7023D7A2C600D5F8BB /* Category.swift */,
+				88309A2F23ED08C60090ABA6 /* Accounts.swift */,
+				88309A3123ED08D90090ABA6 /* Transactions.swift */,
 				88E2A35023B7AAE0003B5456 /* Main.storyboard */,
 				886DD85123FFA20C0096CB3B /* TransferView.swift */,
 				88714A6123F719B50026EEDB /* CategoryPickerView.swift */,
 				88987BE523D91918006ACB18 /* CategoryTableViewCell.swift */,
 				88828BD723F4730200FEA20E /* TransactionTableViewCell.swift */,
-				889E1D7523D7A33A00D5F8BB /* Supporting Files */,
+				88E2A35323B7AAE4003B5456 /* Assets.xcassets */,
+				88E2A35523B7AAE4003B5456 /* LaunchScreen.storyboard */,
 				88E2A35823B7AAE4003B5456 /* Info.plist */,
 			);
 			path = Budget;
-			sourceTree = "<group>";
-		};
-		88E2A36023B7AAE4003B5456 /* BudgetTests */ = {
-			isa = PBXGroup;
-			children = (
-				88E2A36123B7AAE4003B5456 /* BudgetTests.swift */,
-				88E2A36323B7AAE4003B5456 /* Info.plist */,
-			);
-			path = BudgetTests;
-			sourceTree = "<group>";
-		};
-		88E2A36B23B7AAE4003B5456 /* BudgetUITests */ = {
-			isa = PBXGroup;
-			children = (
-				88E2A36C23B7AAE4003B5456 /* BudgetUITests.swift */,
-				88E2A36E23B7AAE4003B5456 /* Info.plist */,
-			);
-			path = BudgetUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
