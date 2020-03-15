@@ -24,28 +24,7 @@
 		88E2A35223B7AAE0003B5456 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88E2A35023B7AAE0003B5456 /* Main.storyboard */; };
 		88E2A35423B7AAE4003B5456 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88E2A35323B7AAE4003B5456 /* Assets.xcassets */; };
 		88E2A35723B7AAE4003B5456 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88E2A35523B7AAE4003B5456 /* LaunchScreen.storyboard */; };
-		88E2A36223B7AAE4003B5456 /* BudgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E2A36123B7AAE4003B5456 /* BudgetTests.swift */; };
-		88E2A36D23B7AAE4003B5456 /* BudgetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E2A36C23B7AAE4003B5456 /* BudgetUITests.swift */; };
-		8A7C1A61E4DEB28D742BA05A /* Pods_Budget_BudgetUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCB38FE74560152434D0F33 /* Pods_Budget_BudgetUITests.framework */; };
-		8BC2610DD50A26E50252990C /* Pods_BudgetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7BB14E5F6E7DEFE0E9D7673 /* Pods_BudgetTests.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		88E2A35E23B7AAE4003B5456 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 88E2A33F23B7AAE0003B5456 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 88E2A34623B7AAE0003B5456;
-			remoteInfo = Budget;
-		};
-		88E2A36923B7AAE4003B5456 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 88E2A33F23B7AAE0003B5456 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 88E2A34623B7AAE0003B5456;
-			remoteInfo = Budget;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3FEA98C5B7820FF5C93896A9 /* Pods-BudgetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BudgetTests.release.xcconfig"; path = "Target Support Files/Pods-BudgetTests/Pods-BudgetTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -69,10 +48,8 @@
 		88E2A35323B7AAE4003B5456 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		88E2A35623B7AAE4003B5456 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88E2A35823B7AAE4003B5456 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		88E2A35D23B7AAE4003B5456 /* BudgetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		88E2A36123B7AAE4003B5456 /* BudgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTests.swift; sourceTree = "<group>"; };
 		88E2A36323B7AAE4003B5456 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		88E2A36823B7AAE4003B5456 /* BudgetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		88E2A36C23B7AAE4003B5456 /* BudgetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetUITests.swift; sourceTree = "<group>"; };
 		88E2A36E23B7AAE4003B5456 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BCB38FE74560152434D0F33 /* Pods_Budget_BudgetUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Budget_BudgetUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,22 +66,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CCA609D7493870FD6DD5010 /* Pods_Budget.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		88E2A35A23B7AAE4003B5456 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8BC2610DD50A26E50252990C /* Pods_BudgetTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		88E2A36523B7AAE4003B5456 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8A7C1A61E4DEB28D742BA05A /* Pods_Budget_BudgetUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,8 +147,6 @@
 			isa = PBXGroup;
 			children = (
 				88E2A34723B7AAE0003B5456 /* Budget.app */,
-				88E2A35D23B7AAE4003B5456 /* BudgetTests.xctest */,
-				88E2A36823B7AAE4003B5456 /* BudgetUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -252,45 +211,6 @@
 			productReference = 88E2A34723B7AAE0003B5456 /* Budget.app */;
 			productType = "com.apple.product-type.application";
 		};
-		88E2A35C23B7AAE4003B5456 /* BudgetTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 88E2A37423B7AAE4003B5456 /* Build configuration list for PBXNativeTarget "BudgetTests" */;
-			buildPhases = (
-				77E10FB928D7F5E99A2655AF /* [CP] Check Pods Manifest.lock */,
-				88E2A35923B7AAE4003B5456 /* Sources */,
-				88E2A35A23B7AAE4003B5456 /* Frameworks */,
-				88E2A35B23B7AAE4003B5456 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				88E2A35F23B7AAE4003B5456 /* PBXTargetDependency */,
-			);
-			name = BudgetTests;
-			productName = BudgetTests;
-			productReference = 88E2A35D23B7AAE4003B5456 /* BudgetTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		88E2A36723B7AAE4003B5456 /* BudgetUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 88E2A37723B7AAE4003B5456 /* Build configuration list for PBXNativeTarget "BudgetUITests" */;
-			buildPhases = (
-				C6CCC87EBF9481A07B643960 /* [CP] Check Pods Manifest.lock */,
-				88E2A36423B7AAE4003B5456 /* Sources */,
-				88E2A36523B7AAE4003B5456 /* Frameworks */,
-				88E2A36623B7AAE4003B5456 /* Resources */,
-				3E0C3F0FDB59AC5540C850B8 /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				88E2A36A23B7AAE4003B5456 /* PBXTargetDependency */,
-			);
-			name = BudgetUITests;
-			productName = BudgetUITests;
-			productReference = 88E2A36823B7AAE4003B5456 /* BudgetUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -303,14 +223,6 @@
 				TargetAttributes = {
 					88E2A34623B7AAE0003B5456 = {
 						CreatedOnToolsVersion = 11.3;
-					};
-					88E2A35C23B7AAE4003B5456 = {
-						CreatedOnToolsVersion = 11.3;
-						TestTargetID = 88E2A34623B7AAE0003B5456;
-					};
-					88E2A36723B7AAE4003B5456 = {
-						CreatedOnToolsVersion = 11.3;
-						TestTargetID = 88E2A34623B7AAE0003B5456;
 					};
 				};
 			};
@@ -328,8 +240,6 @@
 			projectRoot = "";
 			targets = (
 				88E2A34623B7AAE0003B5456 /* Budget */,
-				88E2A35C23B7AAE4003B5456 /* BudgetTests */,
-				88E2A36723B7AAE4003B5456 /* BudgetUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -343,20 +253,6 @@
 				887C448423CFB77B001818FF /* GoogleService-Info.plist in Resources */,
 				88E2A35423B7AAE4003B5456 /* Assets.xcassets in Resources */,
 				88E2A35223B7AAE0003B5456 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		88E2A35B23B7AAE4003B5456 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		88E2A36623B7AAE4003B5456 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,67 +275,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Budget-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3E0C3F0FDB59AC5540C850B8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Budget-BudgetUITests/Pods-Budget-BudgetUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Budget-BudgetUITests/Pods-Budget-BudgetUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Budget-BudgetUITests/Pods-Budget-BudgetUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		77E10FB928D7F5E99A2655AF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BudgetTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C6CCC87EBF9481A07B643960 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Budget-BudgetUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -485,36 +320,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		88E2A35923B7AAE4003B5456 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				88E2A36223B7AAE4003B5456 /* BudgetTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		88E2A36423B7AAE4003B5456 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				88E2A36D23B7AAE4003B5456 /* BudgetUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		88E2A35F23B7AAE4003B5456 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 88E2A34623B7AAE0003B5456 /* Budget */;
-			targetProxy = 88E2A35E23B7AAE4003B5456 /* PBXContainerItemProxy */;
-		};
-		88E2A36A23B7AAE4003B5456 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 88E2A34623B7AAE0003B5456 /* Budget */;
-			targetProxy = 88E2A36923B7AAE4003B5456 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		88E2A35023B7AAE0003B5456 /* Main.storyboard */ = {
@@ -690,94 +496,6 @@
 			};
 			name = Release;
 		};
-		88E2A37523B7AAE4003B5456 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A3CF79DBA84611A12BB34675 /* Pods-BudgetTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M3XA4QM8JG;
-				INFOPLIST_FILE = BudgetTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bennettapps.BudgetTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Budget.app/Budget";
-			};
-			name = Debug;
-		};
-		88E2A37623B7AAE4003B5456 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3FEA98C5B7820FF5C93896A9 /* Pods-BudgetTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M3XA4QM8JG;
-				INFOPLIST_FILE = BudgetTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bennettapps.BudgetTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Budget.app/Budget";
-			};
-			name = Release;
-		};
-		88E2A37823B7AAE4003B5456 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3FEE554DFE9BF89F863C7DBB /* Pods-Budget-BudgetUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M3XA4QM8JG;
-				INFOPLIST_FILE = BudgetUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bennettapps.BudgetUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Budget;
-			};
-			name = Debug;
-		};
-		88E2A37923B7AAE4003B5456 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E8FBDB30F5B17A1CA9FEF03C /* Pods-Budget-BudgetUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M3XA4QM8JG;
-				INFOPLIST_FILE = BudgetUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bennettapps.BudgetUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Budget;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -795,24 +513,6 @@
 			buildConfigurations = (
 				88E2A37223B7AAE4003B5456 /* Debug */,
 				88E2A37323B7AAE4003B5456 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		88E2A37423B7AAE4003B5456 /* Build configuration list for PBXNativeTarget "BudgetTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				88E2A37523B7AAE4003B5456 /* Debug */,
-				88E2A37623B7AAE4003B5456 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		88E2A37723B7AAE4003B5456 /* Build configuration list for PBXNativeTarget "BudgetUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				88E2A37823B7AAE4003B5456 /* Debug */,
-				88E2A37923B7AAE4003B5456 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
