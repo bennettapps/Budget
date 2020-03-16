@@ -46,6 +46,12 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
     {
         let cell = myTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CategoryTableViewCell
         cell.valueText.text = String(format: "$%.2f", categoryNames![indexPath.row].amount)
+        cell.goalText.text = String(format: "$%.2f", categoryNames![indexPath.row].goal)
+        
+        if(categoryNames![indexPath.row].amount - categoryNames![indexPath.row].goal >= 0) {
+            cell.valueText.textColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        }
+        
         cell.textLabel?.text = categoryNames?[indexPath.row].title
         return(cell)
     }
@@ -81,6 +87,11 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
             alert.textFields![0].text = self.categoryNames![indexPath.row].title
             alert.textFields![0].autocorrectionType = .yes
             
+            alert.addTextField(configurationHandler: nil)
+            alert.textFields![1].placeholder = "Budget"
+            alert.textFields![1].text = String(self.categoryNames![indexPath.row].goal)
+            alert.textFields![1].keyboardType = .decimalPad
+            
             alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
             
             alert.addAction(UIAlertAction(title: "Save", style: UIAlertAction.Style.default, handler: {(action) in
@@ -88,6 +99,7 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
                     let newCategory = Category()
                     newCategory.title = alert.textFields![0].text!
                     newCategory.amount = self.categoryNames![indexPath.row].amount
+                    newCategory.goal = (alert.textFields![1].text! as NSString).floatValue
                     self.update(category: newCategory, i: indexPath.row)
                 }
             }))
@@ -108,12 +120,17 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
         alert.textFields![0].placeholder = "Enter a name..."
         alert.textFields![0].autocorrectionType = .yes
         
+        alert.addTextField(configurationHandler: nil)
+        alert.textFields![1].placeholder = "Budget"
+        alert.textFields![1].keyboardType = .decimalPad
+        
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
         
         alert.addAction(UIAlertAction(title: "Create", style: UIAlertAction.Style.default, handler: {(action) in
             if(alert.textFields![0].hasText) {
                 let newCategory = Category()
                 newCategory.title = alert.textFields![0].text!
+                newCategory.goal = (alert.textFields![1].text! as NSString).floatValue
                 self.save(category: newCategory)
             }
         }))
@@ -146,6 +163,7 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
             try realm.write {
                 let newCategory = Category()
                 newCategory.title = category.title
+                newCategory.goal = category.goal
                 realm.add(newCategory)
             }
         } catch {
@@ -160,6 +178,7 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
             try realm.write {
                 categoryNames![i].title = category.title
                 categoryNames![i].amount = category.amount
+                categoryNames![i].goal = category.goal
             }
         } catch {
             print("Error updating category \(error)")

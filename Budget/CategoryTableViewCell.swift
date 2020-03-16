@@ -11,6 +11,7 @@ import UIKit
 class CategoryTableViewCell: UITableViewCell {
 
     @IBOutlet weak var valueText: UILabel!
+    @IBOutlet weak var goalText: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

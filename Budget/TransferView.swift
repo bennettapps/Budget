@@ -61,6 +61,7 @@ class TransferView: UITableViewController, UIPickerViewDataSource, UIPickerViewD
             fromSelected -= 1
             let fromCategory = Category()
             fromCategory.title = categoryResults[fromSelected].title
+            fromCategory.goal = categoryResults[fromSelected].goal
             fromCategory.amount = categoryResults[fromSelected].amount - (transferMoney.text! as NSString).floatValue
             presenter!.update(category: fromCategory, i: fromSelected)
         } else {
@@ -72,6 +73,7 @@ class TransferView: UITableViewController, UIPickerViewDataSource, UIPickerViewD
             toSelected -= 1
             let toCategory = Category()
             toCategory.title = categoryResults[toSelected].title
+            toCategory.goal = categoryResults[toSelected].goal
             toCategory.amount = categoryResults[toSelected].amount + (transferMoney.text! as NSString).floatValue
             presenter!.update(category: toCategory, i: toSelected)
         } else {
