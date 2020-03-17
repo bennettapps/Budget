@@ -48,8 +48,12 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
         cell.valueText.text = String(format: "$%.2f", categoryNames![indexPath.row].amount)
         cell.goalText.text = String(format: "$%.2f", categoryNames![indexPath.row].goal)
         
-        if(categoryNames![indexPath.row].amount - categoryNames![indexPath.row].goal >= 0) {
+        if(categoryNames![indexPath.row].amount < 0) {
+            cell.valueText.textColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+        } else if(categoryNames![indexPath.row].amount - categoryNames![indexPath.row].goal >= 0) {
             cell.valueText.textColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        } else {
+            cell.valueText.textColor = .label
         }
         
         cell.textLabel?.text = categoryNames?[indexPath.row].title
