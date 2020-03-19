@@ -55,8 +55,8 @@ class TransferView: UITableViewController, UIPickerViewDataSource, UIPickerViewD
     }
     
     @IBAction func onSaveClick(_ sender: Any) {
-        let categoryResults = realm.objects(Category.self)
-                
+        let categoryResults = realm.objects(Category.self).sorted(byKeyPath: "date", ascending: false)
+
         if(fromSelected != 0) {
             fromSelected -= 1
             let fromCategory = Category()
@@ -66,7 +66,6 @@ class TransferView: UITableViewController, UIPickerViewDataSource, UIPickerViewD
             presenter!.update(category: fromCategory, i: fromSelected)
         } else {
             defaults.set(defaults.float(forKey: "ToBeBudgeted") - (transferMoney.text! as NSString).floatValue, forKey: "ToBeBudgeted")
-            print("from selected is to be budgeted")
         }
         
         if(toSelected != 0) {
@@ -78,7 +77,6 @@ class TransferView: UITableViewController, UIPickerViewDataSource, UIPickerViewD
             presenter!.update(category: toCategory, i: toSelected)
         } else {
             defaults.set(defaults.float(forKey: "ToBeBudgeted") + (transferMoney.text! as NSString).floatValue, forKey: "ToBeBudgeted")
-            print("to selected is to be budgeted")
         }
         
         presenter!.refreshValues()

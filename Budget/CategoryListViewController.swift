@@ -178,6 +178,7 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func update(category: Category, i: Int) { // update row
+        categoryNames = realm.objects(Category.self).sorted(byKeyPath: "date", ascending: false)
         do {
             try realm.write {
                 categoryNames![i].title = category.title
