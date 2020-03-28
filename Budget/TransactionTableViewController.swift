@@ -123,9 +123,7 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
             var category = 1
             var account = 0
             for c in categories {
-                print(category)
                 if(c.date == self.transactionList![indexPath.row].category) {
-                    print("found it!")
                     break
                 }
                 category += 1
@@ -243,17 +241,17 @@ class TransactionTableViewController: UIViewController, UITableViewDelegate, UIT
             
             let newBalance = transaction.amount
             try? self.realm.write ({
-                if(!oldTransaction.toBeBudgeted) {
-                    if(oldTransaction.category != nil) {
-                        let category = self.findCategoryByDate(date: oldTransaction.category!)
+                if(!transaction.toBeBudgeted) {
+                    if(transaction.category != nil) {
+                        let category = self.findCategoryByDate(date: transaction.category!)
                         category?.amount += newBalance
                     }
                 } else {
                     self.defaults.set(self.defaults.float(forKey: "ToBeBudgeted") + newBalance, forKey: "ToBeBudgeted")
                 }
                 
-                if(oldTransaction.account != nil) {
-                    self.findAccountByDate(date: oldTransaction.account!)?.balance += newBalance
+                if(transaction.account != nil) {
+                    self.findAccountByDate(date: transaction.account!)?.balance += newBalance
                 }
             })
             
