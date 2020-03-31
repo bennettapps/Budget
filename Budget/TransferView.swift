@@ -23,7 +23,7 @@ class TransferView: UITableViewController, UIPickerViewDataSource, UIPickerViewD
         
         categories.append("To Be Budgeted")
         
-        let categoryResults = realm.objects(Category.self)
+        let categoryResults = realm.objects(Category.self).sorted(byKeyPath: "date", ascending: false)
         for category in categoryResults {
             categories.append(category.title)
         }
