@@ -56,7 +56,7 @@ class CategoryListViewController: UIViewController, UITableViewDelegate, UITable
             cell.valueText.textColor = .label
         }
         
-        cell.textLabel?.text = categoryNames?[indexPath.row].title
+        cell.titleText.text = categoryNames?[indexPath.row].title
         return(cell)
     }
     
